@@ -1,4 +1,5 @@
 import 'package:airplane/shared/theme.dart';
+import 'package:airplane/ui/widgets/custom_button.dart';
 import 'package:airplane/ui/widgets/interest_item.dart';
 import 'package:airplane/ui/widgets/photo_item.dart';
 import 'package:flutter/material.dart';
@@ -185,6 +186,51 @@ class DetailPage extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+            // Price and Book
+            Container(
+              width: double.infinity,
+              margin: EdgeInsets.only(
+                top: 30,
+                right: 8,
+                left: 8,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Price
+                  Column(
+                    children: [
+                      Text(
+                        'IDR 2.500.000',
+                        style: blackTextStyle.copyWith(
+                          fontSize: 18,
+                          fontWeight: medium,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        'per orang',
+                        style: grayTextStyle.copyWith(
+                          fontWeight: light,
+                        ),
+                      ),
+                    ],
+                  ),
+                  //Book
+                  CustomButton(
+                    title: 'Book Now',
+                    onPressed: () {},
+                    width: 170,
+                  )
+                ],
+              ),
+            ),
+
+            SizedBox(
+              height: 40,
             )
           ],
         ),
@@ -193,12 +239,14 @@ class DetailPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      body: Stack(
-        children: [
-          backgroundImage(),
-          customShadow(),
-          content(),
-        ],
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            backgroundImage(),
+            customShadow(),
+            content(),
+          ],
+        ),
       ),
     );
   }

@@ -18,7 +18,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 220,
+      width: width,
       height: 55,
       margin: margin,
       child: TextButton(
@@ -30,7 +30,7 @@ class CustomButton extends StatelessWidget {
           ),
         ),
         child: Text(
-          'Get Started',
+          title,
           style: whiteTextStyle.copyWith(
             fontSize: 18,
             fontWeight: medium,
