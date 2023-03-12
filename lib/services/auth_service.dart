@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:airplane/services/user_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:airplane/models/user_model.dart';
@@ -15,15 +17,24 @@ class AuthService {
           .createUserWithEmailAndPassword(email: email, password: password);
 
       UserModel user = UserModel(
-          id: userCredential.user!.uid,
-          email: email,
-          name: name,
-          hobby: hobby,
-          balance: 20000000);
+        id: userCredential.user!.uid,
+        email: email,
+        name: name,
+        hobby: hobby,
+        balance: 20000000,
+      );
 
       await UserService().setUser(user);
 
       return user;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
     } catch (e) {
       throw e;
     }
