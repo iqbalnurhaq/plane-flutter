@@ -7,6 +7,22 @@ import 'package:airplane/models/user_model.dart';
 class AuthService {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
+  Future<UserModel> signIn({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+
+      UserModel user =
+          await UserService().getUserById(userCredential.user!.uid);
+      return user;
+    } on FirebaseAuthException catch (e) {
+      throw e;
+    }
+  }
+
   Future<UserModel> signUp(
       {required String email,
       required String password,
